@@ -1,0 +1,1 @@
+// checks arguments and prints

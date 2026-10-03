@@ -25,7 +25,7 @@ cd <repo>
  
 ## Tech
  
-- Language: <Go / JavaScript / Rust / Java>
+- Language: <Go>
 - Libraries:
 
 ## What I learned
