@@ -3,7 +3,6 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
 	"strings"
@@ -26,7 +25,7 @@ func split(input string) string { // builds the list of items
 	return ""
 }
 
-func test(input string) string {
+func eachletter(input string) string {
 
 	if len(os.Args) != 2 {
 		fmt.Println("Usage: go run . \"your text\"")
@@ -34,12 +33,13 @@ func test(input string) string {
 	} else if os.Args[1] == "" {
 		return ""
 	}
+	var startNumbers []int
 	for _, letterpassed := range input {
 		if strings.Contains(input, "\\n") {
 			split(input)
 			break
 		} else {
-			Forumla(letterpassed)
+			startNumbers = append(startNumbers, Forumla(letterpassed)) // this one i made just to make sure that we will run and save the formulated number for each and every letter compare the formula and this function with the one before
 		}
 	}
 	return ""
@@ -47,43 +47,26 @@ func test(input string) string {
 func Forumla(TheRune rune) int {
 	var OurNumber int
 	OurNumber = (int(TheRune) - 32) * 9
-	var newArr []int
-	newArr = append(newArr, OurNumber)
-	lineAssemblying(newArr)
-
+	return OurNumber
 }
 
-func lineAssemblying(newArr []int) string {
-	folder, err := os.Open("sample.txt")
-	if err != nil {
-		fmt.Println("Error:", err)
-		return ""
-	}
-	defer folder.Close()
+func lineAssemblying(newArr []int, LinesToChooseFrom []string) string {
 
-	scanner := bufio.NewScanner(folder)
-
-	var lines []string
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
-	}
-
-	if err := scanner.Err(); err != nil {
-		fmt.Println("Error reading file:", err)
-		return ""
-	}
-
-	return strings.Join(lines, "\n")
 }
 
 // swedish sounds so oooo uuu
 func main() {
 	if len(os.Args) != 2 {
 		return
-	} else {
-		input := os.Args[1]
-		fmt.Print(test(input))
 	}
+	contentFromSample, err := os.ReadFile("sample.txt") // always need the name in double quotes
+	if err != nil {
+		fmt.Print("STFU")
+		return
+	} // we need to split because the read gives you the result as 1 bulk string
+	LinesToChooseFrom := strings.Split(string(contentFromSample), "\n")
+	input := os.Args[1]
+	fmt.Print(eachletter(input))
 
 }
 
