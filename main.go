@@ -3,6 +3,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"strings"
@@ -16,7 +17,11 @@ func split(input string) string { // builds the list of items
 			list += ("\n")
 		}
 		list += string(charachter)
-
+		for i := 0; i <= len(list); i++ {
+			for _, char := range list {
+				Forumla(char)
+			}
+		}
 	}
 	return ""
 }
@@ -44,7 +49,31 @@ func Forumla(TheRune rune) int {
 	OurNumber = (int(TheRune) - 32) * 9
 	var newArr []int
 	newArr = append(newArr, OurNumber)
-	return 1
+	lineAssemblying(newArr)
+
+}
+
+func lineAssemblying(newArr []int) string {
+	folder, err := os.Open("sample.txt")
+	if err != nil {
+		fmt.Println("Error:", err)
+		return ""
+	}
+	defer folder.Close()
+
+	scanner := bufio.NewScanner(folder)
+
+	var lines []string
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+
+	if err := scanner.Err(); err != nil {
+		fmt.Println("Error reading file:", err)
+		return ""
+	}
+
+	return strings.Join(lines, "\n")
 }
 
 // swedish sounds so oooo uuu
