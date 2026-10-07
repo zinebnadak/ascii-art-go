@@ -8,70 +8,79 @@ import (
 	"strings"
 )
 
-func split(input string) string { // builds the list of items
-
+// function BUILDS LIST OF ITEMS
+func split(input string) string {  
 	list := ""
 	for index, charachter := range input {
-		if input[index] == '\\' && input[index+1] == 'n' { // it could need to be converted
+		if input[index] == '\\' && input[index+1] == 'n' { //it could need to be converted
 			list += ("\n")
 		}
 		list += string(charachter)
-		for i := 0; i <= len(list); i++ {
-			for _, char := range list {
-				Forumla(char)
-			}
-		}
 	}
-	return ""
+	return list
 }
 
-func eachletter(input string) string {
-
-	if len(os.Args) != 2 {
-		fmt.Println("Usage: go run . \"your text\"")
-		return ""
-	} else if os.Args[1] == "" {
-		return ""
-	}
-	var startNumbers []int
-	for _, letterpassed := range input {
-		if strings.Contains(input, "\\n") {
-			split(input)
-			break
-		} else {
-			startNumbers = append(startNumbers, Forumla(letterpassed)) // this one i made just to make sure that we will run and save the formulated number for each and every letter compare the formula and this function with the one before
-		}
-	}
-	return ""
-}
+// function CALCULATES THE STARTING POINT
 func Forumla(TheRune rune) int {
-	var OurNumber int
-	OurNumber = (int(TheRune) - 32) * 9
-	return OurNumber
+	return (int(TheRune)-32)*9.   // maybe +1
 }
 
-func lineAssemblying(newArr []int, LinesToChooseFrom []string) string {
 
+func print_row(words []string, LinesToChooseFrom []string) { // formula's result gets used directly
+	for _, word := range words { // each item in the list
+		if word == "" { // just one empty line
+			fmt.Println()
+			continue
+		}
+		for row := 0; row < 8; row++ { // 8 rows 
+			line := "" // start the row empty 
+			for _, letter := range word { // each letter in this item
+				line += LinesToChooseFrom[Forumla(letter)+row] // where the letter starts & how far down we are
+			}
+			fmt.Println(line) // row is full with all letters so print it
+		}
+	} 
 }
 
-// swedish sounds so oooo uuu
+
+// MAIN FUNCTION
 func main() {
+
+	// CHECK ARGS
 	if len(os.Args) != 2 {
 		return
 	}
+
+	// READ FILE
 	contentFromSample, err := os.ReadFile("sample.txt") // always need the name in double quotes
+	
+	// ERROR HANDLING 
 	if err != nil {
 		fmt.Print("STFU")
 		return
-	} // we need to split because the read gives you the result as 1 bulk string
+	} 
+
+	// TAKE USERS INPUT AND START DRAWING
 	LinesToChooseFrom := strings.Split(string(contentFromSample), "\n")
 	input := os.Args[1]
-	fmt.Print(eachletter(input))
-
+	print_row([]string{input}, LinesToChooseFrom)
 }
+
+
 
 //content, err := os.ReadFile("sample.txt")
 //if err != nil {
 //	fmt.Println("Not reading:", err)
 //	return
 //}
+
+
+
+
+
+
+
+
+
+
+
