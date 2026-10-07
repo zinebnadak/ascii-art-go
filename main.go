@@ -64,15 +64,16 @@ func main() {
 
 	// CHECK ARGS
 	if len(os.Args) != 2 {
+		fmt.Println("Usage: go run . \"your text\"")
 		return
 	}
 
 	// READ FILE
-	contentFromSample, err := os.ReadFile("sample.txt") // always need the name in double quotes
+	contentFromSample, err := os.ReadFile("standard.txt") // always need the name in double quotes
 	
 	// ERROR HANDLING 
 	if err != nil {
-		fmt.Print("STFU")
+		fmt.Println("Error:", err)
 		return
 	} 
 
