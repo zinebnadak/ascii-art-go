@@ -26,18 +26,18 @@ func Forumla(TheRune rune) int {
 }
 
 // function PRINTS EACH ROW OF THE LETTERS ITEM BY ITEM THEN LETTER BY LETTER FROM THE LIST
-func print_row(words []string, LinesToChooseFrom []string) { // formula's result gets used directly
-	for _, word := range words { // each item in the list
-		if word == "" { // just one empty line
+func print_row(words []string, LinesToChooseFrom []string) { 
+	for _, word := range words { // each ITEM in the list
+		if word == "" { // if the item is empty, print a blank line and continue to next item
 			fmt.Println()
 			continue
 		}
 		for row := 0; row < 8; row++ { // 8 rows 
 			line := "" // start the row empty 
-			for _, letter := range word { // each letter in this item
+			for _, letter := range word { // each LETTER in the item
 				line += LinesToChooseFrom[Forumla(letter)+row] // where the letter starts & how far down we are
 			}
-			fmt.Println(line) // row is full with all letters so print it
+			fmt.Println(line) 
 		}
 	} 
 }
