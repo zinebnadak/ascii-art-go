@@ -42,17 +42,6 @@ func print_row(words []string, LinesToChooseFrom []string) {
 	} 
 }
 
-/*
-Går igenom varje textbit, en i taget.
-Om ordet är tomt skriver den ut en tom rad och hoppar till nästa ord.
-Annars upprepar den 8 gånger, en gång per rad i teckningen:
-- Börjar med en tom rad, line := "".
-- Går igenom bokstäverna i biten.
-- För varje bokstav räknar Forumla ut var bokstaven börjar i filen. + row flyttar ner till rätt rad i bokstavens teckning, och den raden limmas fast i slutet av line.
-- När alla bokstäver är tillagda skrivs raden ut
-*/
-
-
 // MAIN FUNCTION
 func main() {
 
