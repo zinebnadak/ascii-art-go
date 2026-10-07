@@ -25,7 +25,7 @@ func Forumla(TheRune rune) int {
 	return (int(TheRune)-32)*9.   // maybe +1
 }
 
-
+// function PRINTS EACH ROW OF THE LETTERS ITEM BY ITEM THEN LETTER BY LETTER FROM THE LIST
 func print_row(words []string, LinesToChooseFrom []string) { // formula's result gets used directly
 	for _, word := range words { // each item in the list
 		if word == "" { // just one empty line
@@ -41,6 +41,21 @@ func print_row(words []string, LinesToChooseFrom []string) { // formula's result
 		}
 	} 
 }
+
+/*
+Går igenom varje textbit, en i taget.
+Om ordet är tomt skriver den ut en tom rad och hoppar till nästa ord.
+Annars upprepar den 8 gånger, en gång per rad i teckningen:
+- Börjar med en tom rad, line := "".
+- Går igenom bokstäverna i biten.
+- För varje bokstav räknar Forumla ut var bokstaven börjar i filen. + row flyttar ner till rätt rad i bokstavens teckning, och den raden limmas fast i slutet av line.
+- När alla bokstäver är tillagda skrivs raden ut
+*/
+
+
+
+
+
 
 
 

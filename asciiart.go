@@ -1,3 +1,0 @@
-// all logic
-
-package main
