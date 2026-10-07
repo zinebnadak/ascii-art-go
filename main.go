@@ -53,12 +53,6 @@ Annars upprepar den 8 gånger, en gång per rad i teckningen:
 */
 
 
-
-
-
-
-
-
 // MAIN FUNCTION
 func main() {
 
@@ -85,11 +79,6 @@ func main() {
 
 
 
-//content, err := os.ReadFile("sample.txt")
-//if err != nil {
-//	fmt.Println("Not reading:", err)
-//	return
-//}
 
 
 
