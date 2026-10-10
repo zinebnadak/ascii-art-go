@@ -1,38 +1,58 @@
-# Project Name
+# ascii-art
  
-<One sentence: what it does and who it's for.>
+A Go command-line tool that turns text into big ASCII-art banners, for anyone who wants large text in the terminal.
  
 ## Example
  
+Input:
+ 
+```bash
+go run . "hi"
 ```
-Input:  <short input>
-Output: <short output>
+ 
+Output:
+ 
+```
+ _       _  
+| |     (_) 
+| |__    _  
+|  _ \  | | 
+| | | | | | 
+|_| |_| |_| 
+
 ```
  
 ## Usage
  
 ```bash
-git clone https://github.com/<you>/<repo>.git
-cd <repo>
-<run command>
+git clone https://github.com/zinebnadak/ascii-art-go.git
+cd ascii-art-go
+go run . "Hello\nThere"
 ```
  
+- `\n` in the text starts a new banner line.
+- Use SINGLE QUOTES for text with `!` in zsh: `go run . 'Hi!'`
+
 ## Tests
  
+Compare the output with the examples in the subject (`cat -e` shows a `$` at the end of each line):
+ 
 ```bash
-<test command>
+go run . "Hello\n\nThere" | cat -e
+go vet ./...
 ```
  
 ## Tech
  
-- Language: <Go>
-- Libraries:
+- Language: Go
+- Libraries: standard library only (`fmt`, `os`, `strings`)
 
 ## What I learned
  
-- <one concrete skill>
-- <one concrete skill>
-
+- Reading a file with `os.ReadFile` and splitting it into lines with `strings.Split`
+- Using a character's ASCII code to calculate where its drawing starts in a file
+- Building output row by row with nested loops
+- Handling `\n` typed on the command line, which arrives as two characters
 ---
  
 Built by Mohamed & Zineb at [grit:lab](https://gritlab.ax), Åland (01-edu peer-learning program).
